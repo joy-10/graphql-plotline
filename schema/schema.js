@@ -15,6 +15,12 @@ const ProductType = new GraphQLObjectType({
         productId: {type: GraphQLString},
         price: {type: GraphQLFloat},
         sellerId: {type: GraphQLString},
+        seller:{
+            type:SellerType,
+            resolve(parent,args){
+                return Seller.findOne({sellerId:parent.sellerId})
+            }
+        }
     })
 })
 
@@ -23,7 +29,13 @@ const SellerType = new GraphQLObjectType({
     fields: () => ({
         id: {type: GraphQLID},
         name: {type: GraphQLString},
-        sellerId: {type: GraphQLString}
+        sellerId: {type: GraphQLString},
+        products:{
+            type:new GraphQLList(ProductType),
+            resolve(parent,args){
+                return Product.find({sellerId:parent.sellerId})
+            }
+        }
     })
 })
 
@@ -35,6 +47,26 @@ const RootQuery = new GraphQLObjectType({
             args:{productId: {type: GraphQLString}},
             resolve(parent,args){
                 return Product.findOne({productId:args.productId})
+            }
+        },
+        seller:{
+            type: SellerType,
+            args: {sellerId: {type: GraphQLString}},
+            resolve(parent,args)
+            {
+                return Seller.findOne({sellerId:args.sellerId})
+            }
+        },
+        products:{
+            type: new GraphQLList(ProductType),
+            resolve(parent,args){
+                return Product.find({})
+            }
+        },
+        sellers:{
+            type: new GraphQLList(SellerType),
+            resolve(parent,args){
+                return Seller.find({})
             }
         }
     }
