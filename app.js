@@ -6,10 +6,10 @@ const schema = require('./schema/schema')
 
 const port = process.env.PORT || 5000
 
-mongoose.connect(process.env.MongoUri)
+mongoose.connect('mongodb+srv://joy:Joy1234@gql.pus5j.mongodb.net/gql')
 mongoose.connection.once('open',() => console.log("MongoDB connected"))
 
-app.use('/graphql',graphqlHTTP({
+app.use('/',graphqlHTTP({
     schema:schema,
     graphiql:true
 }))
