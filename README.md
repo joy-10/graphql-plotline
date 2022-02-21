@@ -1,11 +1,11 @@
 # graphql-plotline
 
-For Adding an Seller
+For Adding an Seller__
 
-mutation{
-addSeller(name:"Plotline Limited",sellerId:"PLT11")
-  {
-    name //This returns the name we are inserting
-  }
-}
+mutation{__
+addSeller(name:"Plotline Limited",sellerId:"PLT11")__
+  {__
+    name //This returns the name we are inserting__
+  }__
+}__
 
