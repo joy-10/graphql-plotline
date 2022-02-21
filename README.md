@@ -52,7 +52,7 @@ For fetching a single seller
   } \
 } 
 
-For fetchinh all products
+For fetching all products
 
 { \
 	products{ \
